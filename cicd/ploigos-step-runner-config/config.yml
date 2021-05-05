@@ -97,6 +97,7 @@ step-runner-config:
       num-replicas: 1
       route-enabled: true
       deployment-config-repo: http://gitea.devsecops.svc.cluster.local:3000/platform/reference-quarkus-mvn-cloud-resources_jenkins_workflow-standard.git
+      deployment-config-helm-chart-path: charts/reference-quarkus-mvn-deploy
 
   validate-environment-configuration:
   - implementer: ConfiglintFromArgocd
