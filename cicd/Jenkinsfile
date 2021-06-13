@@ -12,17 +12,17 @@ ploigosWorkflowStandard(
 
     workflowServiceAccountName: 'jenkins',
 
-    workflowWorkerImageDefault: 'quay.io/ploigos/ploigos-ci-agent-jenkins:v0.16.0',
-    workflowWorkerImageUnitTest: 'quay.io/ploigos/ploigos-tool-maven:v0.16.0',
-    workflowWorkerImagePackage: 'quay.io/ploigos/ploigos-tool-maven:v0.16.0',
-    workflowWorkerImageStaticCodeAnalysis: 'quay.io/ploigos/ploigos-tool-sonar:v0.16.0',
-    workflowWorkerImagePushArtifacts: 'quay.io/ploigos/ploigos-tool-maven:v0.16.0',
-    workflowWorkerImageContainerOperations: 'quay.io/ploigos/ploigos-tool-containers:v0.16.0',
-    workflowWorkerImageContainerImageStaticComplianceScan: 'quay.io/ploigos/ploigos-tool-openscap:v0.16.0',
-    workflowWorkerImageContainerImageStaticVulnerabilityScan: 'quay.io/ploigos/ploigos-tool-openscap:v0.16.0',
-    workflowWorkerImageDeploy: 'quay.io/ploigos/ploigos-tool-argocd:v0.16.0',
-    workflowWorkerImageValidateEnvironmentConfiguration: 'quay.io/ploigos/ploigos-tool-config-lint:v0.16.0',
-    workflowWorkerImageUAT: 'quay.io/ploigos/ploigos-tool-maven:v0.16.0',
+    workflowWorkerImageDefault: 'quay.io/ploigos/ploigos-ci-agent-jenkins:nightly',
+    workflowWorkerImageUnitTest: 'quay.io/ploigos/ploigos-tool-maven:nightly',
+    workflowWorkerImagePackage: 'quay.io/ploigos/ploigos-tool-maven:nightly',
+    workflowWorkerImageStaticCodeAnalysis: 'quay.io/ploigos/ploigos-tool-sonar:nightly',
+    workflowWorkerImagePushArtifacts: 'quay.io/ploigos/ploigos-tool-maven:nightly',
+    workflowWorkerImageContainerOperations: 'quay.io/ploigos/ploigos-tool-containers:nightly',
+    workflowWorkerImageContainerImageStaticComplianceScan: 'quay.io/ploigos/ploigos-tool-openscap:nightly',
+    workflowWorkerImageContainerImageStaticVulnerabilityScan: 'quay.io/ploigos/ploigos-tool-openscap:nightly',
+    workflowWorkerImageDeploy: 'quay.io/ploigos/ploigos-tool-argocd:nightly',
+    workflowWorkerImageValidateEnvironmentConfiguration: 'quay.io/ploigos/ploigos-tool-config-lint:nightly',
+    workflowWorkerImageUAT: 'quay.io/ploigos/ploigos-tool-maven:nightly',
 
     separatePlatformConfig: true
 )
