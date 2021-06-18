@@ -200,7 +200,7 @@ step-runner-config:
     config:
       rules: cicd/ValidateEnv/
 
-  gather_evidence:
+  generate-evidence:
   - implementer: GenerateEvidence
 
   uat:
