@@ -12,16 +12,13 @@ step-runner-config:
     #
     # Maven servers used during the pipeline
     #
+    # Credentials in secrets.yaml
     ####
     maven-servers:
       internal-mirror:
         id: maven-public
-        username: ploigos
-        password: "ENC[AES256_GCM,data:r2+2167pO5TQMGDBQIcClPYaqSbA0f5vtapWi+99P2r6Q44n,iv:JwcaXTSqdEwPeVvYu3Ec/jDVxMGdLrWACZEra9FzoM0=,tag:zYybpY1m1YBpsfRfktRxfA==,type:str]"
       maven-releases:
         id: maven-releases
-        username: ploigos
-        password: "ENC[AES256_GCM,data:r2+2167pO5TQMGDBQIcClPYaqSbA0f5vtapWi+99P2r6Q44n,iv:JwcaXTSqdEwPeVvYu3Ec/jDVxMGdLrWACZEra9FzoM0=,tag:zYybpY1m1YBpsfRfktRxfA==,type:str]"
 
     #####
     #
@@ -41,15 +38,12 @@ step-runner-config:
         url: https://nexus-devsecops.apps.cluster-d664.d664.sandbox567.opentlc.com/repository/maven-public/
         mirror-of: '*'
 
-    container-registries:
-      nexus-docker-devsecops.apps.${CLUSTER_DNS_BASEDOMAIN}:
-        username: "ploigos"
-        password: "ENC[AES256_GCM,data:r2+2167pO5TQMGDBQIcClPYaqSbA0f5vtapWi+99P2r6Q44n,iv:JwcaXTSqdEwPeVvYu3Ec/jDVxMGdLrWACZEra9FzoM0=,tag:zYybpY1m1YBpsfRfktRxfA==,type:str]"
-
-      registry.redhat.io:
-        username: "7271256|agoossen"
-        password: "ENC[AES256_GCM,data:/gig7/f2ZNWliLorML0z5uIC4vNDcXB352MxqmlpJTBfhwCV5h8IgoX4yimHHPLjgq4u/b5cr58lQaV+mNNb45kvs9uNlw5tcC9qiZVG/BeRACQZ+TssypMZxCk7k68LtiEtPkZWJaN7GgmcgIgS0rjmjbr6bzTG9aiRvd3Gy8PLvNilA5dTjRLncE6oZJOo9OjFPzYJCxCCPNtIsmwv1vPNVYIl2oNgyB40CpgytmefPt57mhEawRv3Hd4S8SkjSd1i8B22QYQOobkwHQGeWsyBCaMcjO+oGtrL3/Y0C10dxP5qyNHFxoiOuZ7zfDB6125JfLb5X+zSE60wfM4aJIHWLve+PnI6X2K0zsv8if8mjYemptzZ89z9X5iqfcVhvxMFanAgRuvpV2MmW1q8lgy7o2pI950Chsida74Z9AUax161UhyvH1xRsbwHeuC3dfKGhqHgENmfCgQhiM5vpQuQxdHOB57fQeGsKKlNvVnQNBdIa9HdwtmawnB+ehAt/F2h9CrQYPk0ywODg29lEic9oz5NxHdnqtO8NdVH5yPehkC2BLcwAynHp3YaTbXSWTrZMdp7OwCjFeSMzXzA5vZan3rRftO7E15sMdOpqKYwNKFzTWxogWr+wf/3Hz7BBF7/ya5qjgNCAjMy3Qlft7ij0biRiY8V0m27xaFNLbPDaCqthZxD85y2CU0qvVfUoyKxIfV7QBahzXlL2z2nFm+eHp2jhUDXUmdiutp+WQ7WCVY5utjC3QzqCch17EloA4lVe/9yA7DyMjl/GIV2leK96eYPlcFvZzsjlv3RkCc5dGctUHMg9v/kuLiAEu68EJX49j3opSh5332mZZW1ZH9e3XHGL5+BuGtJAdwwblmzpP9HG8N/wsWYXwUc3fml2CxsQlL+3CorMEzGfSVX4NXAFwxxSF75CRRE0jVkIT5seigdNblX5VK64ybLlhgJb7L1FKhHxcuJVPXdTEiQ1pnENNKCZpYtFT2BP5/auCQTDXGiHMNwAW0=,iv:AZ7IAcAWA7+oAC2kPykxL/on4HFUpWMV10AgTQ9XvnM=,tag:udGwEY5SwmhguZKR4wltLw==,type:str]"
-
+    #####
+    #
+    # Container registry details are encrypted in secrets.yaml
+    #
+    #####
+    #
   global-environment-defaults:
     DEV:
       kube-app-domain: dev.apps.cluster-d664.d664.sandbox567.opentlc.com
@@ -61,16 +55,10 @@ step-runner-config:
   generate-metadata:
   - implementer: Maven
   - implementer: Git
-    config:
-      git-password: "ENC[AES256_GCM,data:r2+2167pO5TQMGDBQIcClPYaqSbA0f5vtapWi+99P2r6Q44n,iv:JwcaXTSqdEwPeVvYu3Ec/jDVxMGdLrWACZEra9FzoM0=,tag:zYybpY1m1YBpsfRfktRxfA==,type:str]"
-
   - implementer: SemanticVersion
 
   tag-source:
   - implementer: Git
-    config:
-      git-username: ploigos
-      git-password: "ENC[AES256_GCM,data:r2+2167pO5TQMGDBQIcClPYaqSbA0f5vtapWi+99P2r6Q44n,iv:JwcaXTSqdEwPeVvYu3Ec/jDVxMGdLrWACZEra9FzoM0=,tag:zYybpY1m1YBpsfRfktRxfA==,type:str]"
 
   unit-test:
   - implementer: Maven
@@ -78,12 +66,15 @@ step-runner-config:
   package:
   - implementer: Maven
 
+  #####
+  #
+  # SonarQube credentials in secrets.yaml
+  #
+  #####
   static-code-analysis:
   - implementer: SonarQube
     config:
       url: https://sonarqube-devsecops.apps.cluster-d664.d664.sandbox567.opentlc.com/
-      username: ploigos
-      password: "ENC[AES256_GCM,data:r2+2167pO5TQMGDBQIcClPYaqSbA0f5vtapWi+99P2r6Q44n,iv:JwcaXTSqdEwPeVvYu3Ec/jDVxMGdLrWACZEra9FzoM0=,tag:zYybpY1m1YBpsfRfktRxfA==,type:str]"
 
   push-artifacts:
   - implementer: Maven
@@ -116,9 +107,10 @@ step-runner-config:
     config: {}
   - implementer: CurlPush
     config:
+      ####
+      # Server credentials in secrets.yaml
+      ####
       container-image-signature-server-url: https://nexus-devsecops.apps.cluster-d664.d664.sandbox567.opentlc.com/repository/container-image-signatures
-      container-image-signature-server-username: ploigos
-      container-image-signature-server-password: "ENC[AES256_GCM,data:r2+2167pO5TQMGDBQIcClPYaqSbA0f5vtapWi+99P2r6Q44n,iv:JwcaXTSqdEwPeVvYu3Ec/jDVxMGdLrWACZEra9FzoM0=,tag:zYybpY1m1YBpsfRfktRxfA==,type:str]"
 
   container-image-static-compliance-scan:
   - name: OpenSCAP - Compliance - Example Compliance Profile for UBI8 Container Images [Based on xccdf_org.ssgproject.content_profile_standard]
@@ -158,25 +150,22 @@ step-runner-config:
       
       #####
       #
-      # Connection details to the ArgoCD API.
+      # Connection details to the ArgoCD API. Credentials in secrets.yaml.
       #
       # Does not have to be local to this cluster.
       #
       #####
       argocd-api: argocd-server.devsecops.svc.cluster.local
-      argocd-username: ploigos
-      argocd-password: "ENC[AES256_GCM,data:r2+2167pO5TQMGDBQIcClPYaqSbA0f5vtapWi+99P2r6Q44n,iv:JwcaXTSqdEwPeVvYu3Ec/jDVxMGdLrWACZEra9FzoM0=,tag:zYybpY1m1YBpsfRfktRxfA==,type:str]"
       argocd-skip-tls: True
       argocd-sync-timeout-seconds: 130
 
       #####
       #
-      # USed by the ArgoCD implementer for committing to `deployment-config-repo`
+      # Used by the ArgoCD implementer for committing to `deployment-config-repo`
       # when the Helm chart values have been changed.
       #
+      # Auth using git-username and git-password; see secrets.yaml
       #####
-      git-username: ploigos
-      git-password: "ENC[AES256_GCM,data:r2+2167pO5TQMGDBQIcClPYaqSbA0f5vtapWi+99P2r6Q44n,iv:JwcaXTSqdEwPeVvYu3Ec/jDVxMGdLrWACZEra9FzoM0=,tag:zYybpY1m1YBpsfRfktRxfA==,type:str]"
       git-email: 'adam.goossens@gmail.com'
 
       #####
@@ -195,18 +184,18 @@ step-runner-config:
       # and each one will be updated automatically with new image tag information
       # when that environment is about to be deployed.
       #
+      # Tokens in secrets.yaml.
+      #
       #####
       environment-config:
         DEV:
           deployment-config-helm-chart-environment-values-file: values-DEV.yaml
         TEST:
           kube-api-url: https://api.preprod.az.adamgoossens.com:6443
-          kube-api-token: "ENC[AES256_GCM,data:iMCDmEExSNqOnGRH1q/bxAeXUfnGzQNMil1p+olosLqVYCndMbl6Jp8VHbs3hfEEONSFfGeC6upOp4tIs7z8rmorzoQSZfBwYJjaPPPplZCq6+OIQUDItAQivUjba1RQHHNF4g/e4osOu4i4/xJ0fJD7AR19E2a8TPivKGzsdliFQaoBjIUw4CLl8XJu0sO/0Uah+cx/YMDL5w11CXR/mtCtr+ya6O3WCXKknLIRX19gRMcNLS86dMnv/SiSqpH5gO4L9RNP0t+TGVcOft4xrexOC7PB8M2mc3lmKUtPtJB87sKY1VoG2O2RNZVUpcLdYNvBLFtON553GEoPtmFvnM+zTKWsq+Zc+xAQilVROIz05jizay4j1e37dogqLCeCeLCEf0e+Bx5jFjogq2luOQ5/uIoyFVU91Zwb+J36dmikpEeyjGk1/ny2ICb3vLyApEMRC7fVGWk25dk3oW2MPfpsKBNC/zujdL95O1Dc34NdDknjxdLv8k/14SjAt3ZHmZsqzLPU6QWy4IK3EhMN8HX31zY64zIlkLAJUMnv3jWKxefGHF//rDsLbDtgOH7Q1ZU6gqxD5nwcGpCJjNfFxpEB8jJBP+OWxlqq9imAa0NvBpVZ3hpqLd4dMmozjPeXbd5192bFZ2glfksgLz/nZrQNNBBvuZW3bP2j8OBRSmf+IwWya2MgFjHRaV2kn7tXj96Bm8OfAC3wR5ebITrRgyBXcL394xFVBMvSwbQcK/8D+Ff/PdZfBpOjxEvtdRImEK9VPVgOUHSNC3wDoKi87frNnhPKI0Ic2MxkY9onNHD7dUlnw1FUbde1xzBIOwDyuQYIHc3ITypDS4U0eL+YSB7QipX2XUgemhgUTp5O51lqVOCbltRYUgjGZNc0Cz7oVwUOerQbQ4RAdGfqZpAFLI2QMP4Zkl8cuUSZMTrMwsgTwc3h7KJFQg4pF+wg1LUFR7c1UuvQFZVq/F0RqAeWlcfuzlfye2wtQCxPnCY1zMybASeHcEjPPebH3jfMXVhhlFI4sU9Czwm56/Cpx8ZoUVYPCCmGymbgCEVa7jSn6TrFZMXmpZPpy+R0q7W+N/xr4IVOgLgdX9wwk41xb2qMavBSA+zNny3y1kMAZ1sBtkuEtclUqZYgmuMgo4igj7flWZkg8BNhvKe6mtr3C0rkrLmGWvjPHyESZs7sS3GwGy7BKEhmAGjuaQ==,iv:rQm+l2p84gqJGCEGXSJR7lAKFFwlqQT3tnqt9EA+rzc=,tag:FBFAoJ/Y799xoNIKxt+OvA==,type:str]"
           kube-api-skip-tls: True
           deployment-config-helm-chart-environment-values-file: values-TEST.yaml
         PROD:
           kube-api-url: https://api.prod.adamgoossens.com:6443
-          kube-api-token: "ENC[AES256_GCM,data:Ghxy91RWP62NhS4baLq/JTt6phUe48bQOqosCGbx0tzYNmKiVY/+aBJ5aikCJNJUpcPmvnR8wxencVXTAqOLKrnO2AnAuYJl8XPDjkmlFxQFfy7GNHxEjuuvWQiocrS5nUH2ugJMf3b+X01ogwKPx81F3Cl391h+TTUoPx8+vy5LkXyqmyQFqR8ySL/spSlE1ruMtOdBeGyfMWCVsGZubtJQcaoptwUL3s8TrCRQWx9aAMGPXRsqiU66HemgobgzL91Xw+gflzIqq6allm7h2K7r2lYXW9r0DRbgx42kpl0K7QwojIMAZmRx/RXvB+aOtfAKqJFj3Sb15JfU5Y+bxxdOwQHWNGJI3h8syiXt+YBWAQVQNDThBvEHThOfNCq+SuO7KApBOkHlyOw+NQkSopWR1OqqQpLl3eZfEJlN1k2BUn87icmL1P+2l+62Os5IydkKd83cTdbnzW4mx9BBsc7JtjJQnomlBPMl6HHERMA7y4DR/M1kV7C5enb8a++48f8gWFHRpjlbMR1lgo2WoTMsO65upB4JvKhyAF8CgHUw/NnyxOA4Iglb9F8lIP7lVKde/Ots8AeD1DGnhAOFZzrXCfr125aqSKrV18xv3Gsgoy3lhNLbsM2OJNh05bPuce0fWOsGr/ntkWr5InHd0JmsJlVlio1tTJUHwX9+5lbEJOQGwnLnYt0L0K2QF4vtGVv7gfqZ4rBfTNa7FpShAdjfiee5c0cq+40krZYSt5+gxcJqel4OTmOEEiyZswB7y1+3+5eKmChJEsDUK2gU8WHOJD5f/e86gIMMKisRihcn1CCbN77U9FtV/mRnxXCiNS0/Km3XyvNPGqpbwuljZ06x/PVt+TjwdoW88jSdzP6zs+ZZSNRXEQOiQULEHsWdpnNf8UDey3EYzzO1YroOUbv4YoWVHBhFdTgfy28goBULbzfcmj+x52vM6tX1UOrK67Qz4RMzmKIkyzHgtZMszhSvwleYtKxYjKa3cq9XRd8UfZQeUpivjhvFIG59DISvyyZZ+vDfmKSPkAvApTG6t5jmEWvAxbU/IWxPMQKKPiOPFC1Grv79U94Gx8DhXYxdzdTSWNEbicEnjX6UCKelenM7wqoCbc7MfZn6eFzFI00g/B/YCO+zA+jZ2D8St8q8ET3zTbnmsZceBysaUbCDGj74NGy5IEt0TySHwTr90jgEjhxDWJX0ww==,iv:wMw532crRiGLqQ7Rg3irXwivrBWjOzBOA4XFoRPpewg=,tag:4+FUECXtUetE6MdRjFSbqw==,type:str]"
           kube-api-skip-tls: True
           deployment-config-helm-chart-environment-values-file: values-PROD.yaml
 
@@ -220,5 +209,4 @@ step-runner-config:
   - implementer: MavenSeleniumCucumber
     config: {
       selenium-hub-url: http://selenium-grid.devsecops.svc.cluster.local:4444
-    
     }
