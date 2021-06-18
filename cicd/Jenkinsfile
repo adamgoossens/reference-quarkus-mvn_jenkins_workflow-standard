@@ -6,7 +6,7 @@ retriever: modernSCM([
 ])
 
 // run the pipeline
-ploigosWorkflowStandard(
+ploigosWorkflowEverything(
     stepRunnerConfigDir: 'cicd/ploigos-step-runner-config/',
     pgpKeysSecretName: 'tssc-gpg-key',
 
