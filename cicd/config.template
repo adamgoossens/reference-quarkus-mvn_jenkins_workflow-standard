@@ -31,18 +31,18 @@ step-runner-config:
     maven-repositories:
       maven-releases:
         id: maven-releases
-        url: https://nexus-devsecops.apps.cluster-d664.d664.sandbox567.opentlc.com/repository/maven-releases/
+        url: https://nexus-${NAMESPACE}.apps.${DEV_DNS_BASEDOMAIN}/repository/maven-releases/
         snapshots: false
         releases: true
 
     maven-mirrors:
       internal-mirror:
         id: maven-public
-        url: https://nexus-devsecops.apps.cluster-d664.d664.sandbox567.opentlc.com/repository/maven-public/
+        url: https://nexus-${NAMESPACE}.apps.${DEV_DNS_BASEDOMAIN}/repository/maven-public/
         mirror-of: '*'
 
     container-registries:
-      nexus-docker-devsecops.apps.${CLUSTER_DNS_BASEDOMAIN}:
+      nexus-docker-${NAMESPACE}.apps.${CLUSTER_DNS_BASEDOMAIN}:
         username: "ploigos"
         password: "ENC[AES256_GCM,data:r2+2167pO5TQMGDBQIcClPYaqSbA0f5vtapWi+99P2r6Q44n,iv:JwcaXTSqdEwPeVvYu3Ec/jDVxMGdLrWACZEra9FzoM0=,tag:zYybpY1m1YBpsfRfktRxfA==,type:str]"
 
@@ -52,7 +52,7 @@ step-runner-config:
 
   global-environment-defaults:
     DEV:
-      kube-app-domain: dev.apps.cluster-d664.d664.sandbox567.opentlc.com
+      kube-app-domain: dev.apps.${DEV_DNS_BASEDOMAIN}
     TEST:
       kube-app-domain: test.apps.preprod.az.adamgoossens.com
     PROD:
@@ -81,7 +81,7 @@ step-runner-config:
   static-code-analysis:
   - implementer: SonarQube
     config:
-      url: https://sonarqube-devsecops.apps.cluster-d664.d664.sandbox567.opentlc.com/
+      url: https://sonarqube-${NAMESPACE}.apps.${DEV_DNS_BASEDOMAIN}/
       username: ploigos
       password: "ENC[AES256_GCM,data:r2+2167pO5TQMGDBQIcClPYaqSbA0f5vtapWi+99P2r6Q44n,iv:JwcaXTSqdEwPeVvYu3Ec/jDVxMGdLrWACZEra9FzoM0=,tag:zYybpY1m1YBpsfRfktRxfA==,type:str]"
 
@@ -89,7 +89,7 @@ step-runner-config:
   - implementer: Maven
     config:
       maven-push-artifact-repo-id: maven-releases
-      maven-push-artifact-repo-url: https://nexus-devsecops.apps.cluster-d664.d664.sandbox567.opentlc.com/repository/maven-releases
+      maven-push-artifact-repo-url: https://nexus-${NAMESPACE}.apps.${DEV_DNS_BASEDOMAIN}/repository/maven-releases
 
   create-container-image:
   - implementer: Buildah
@@ -109,14 +109,14 @@ step-runner-config:
   push-container-image:
   - implementer: Skopeo
     config:
-      destination-url: nexus-docker-devsecops.apps.cluster-d664.d664.sandbox567.opentlc.com
+      destination-url: nexus-docker-${NAMESPACE}.apps.${DEV_DNS_BASEDOMAIN}
 
   sign-container-image:
   - implementer: PodmanSign
     config: {}
   - implementer: CurlPush
     config:
-      container-image-signature-server-url: https://nexus-devsecops.apps.cluster-d664.d664.sandbox567.opentlc.com/repository/container-image-signatures
+      container-image-signature-server-url: https://nexus-${NAMESPACE}.apps.${DEV_DNS_BASEDOMAIN}/repository/container-image-signatures
       container-image-signature-server-username: ploigos
       container-image-signature-server-password: "ENC[AES256_GCM,data:r2+2167pO5TQMGDBQIcClPYaqSbA0f5vtapWi+99P2r6Q44n,iv:JwcaXTSqdEwPeVvYu3Ec/jDVxMGdLrWACZEra9FzoM0=,tag:zYybpY1m1YBpsfRfktRxfA==,type:str]"
 
@@ -152,7 +152,7 @@ step-runner-config:
       # Once updated, it will commit the changed values.yaml file back to the repository.
       #
       #####
-      deployment-config-repo: http://gitea.devsecops.svc.cluster.local:3000/platform/reference-quarkus-mvn-cloud-resources_jenkins_workflow-standard.git
+      deployment-config-repo: http://gitea.${NAMESPACE}.svc.cluster.local:3000/platform/reference-quarkus-mvn-cloud-resources_jenkins_workflow-standard.git
       deployment-config-helm-chart-path: charts/reference-quarkus-mvn-deploy
       deployment-config-helm-chart-values-file-image-tag-yq-path: 'image.tag'
       
@@ -163,7 +163,7 @@ step-runner-config:
       # Does not have to be local to this cluster.
       #
       #####
-      argocd-api: argocd-server.devsecops.svc.cluster.local
+      argocd-api: argocd-server.${NAMESPACE}.svc.cluster.local
       argocd-username: ploigos
       argocd-password: "ENC[AES256_GCM,data:r2+2167pO5TQMGDBQIcClPYaqSbA0f5vtapWi+99P2r6Q44n,iv:JwcaXTSqdEwPeVvYu3Ec/jDVxMGdLrWACZEra9FzoM0=,tag:zYybpY1m1YBpsfRfktRxfA==,type:str]"
       argocd-skip-tls: True
@@ -219,6 +219,6 @@ step-runner-config:
   uat:
   - implementer: MavenSeleniumCucumber
     config: {
-      selenium-hub-url: http://selenium-grid.devsecops.svc.cluster.local:4444
+      selenium-hub-url: http://selenium-grid.${NAMESPACE}.svc.cluster.local:4444
     
     }
