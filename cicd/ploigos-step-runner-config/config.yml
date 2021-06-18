@@ -205,6 +205,9 @@ step-runner-config:
     config:
       rules: cicd/ValidateEnv/
 
+  gather_evidence:
+  - implementer: GenerateEvidence
+
   uat:
   - implementer: MavenSeleniumCucumber
     config: {
