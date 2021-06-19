@@ -199,6 +199,9 @@ step-runner-config:
     config:
       rules: cicd/ValidateEnv/
 
+  report:
+  - implementer: ResultArtifactsArchive
+
   generate-evidence:
   - implementer: GenerateEvidence
 
