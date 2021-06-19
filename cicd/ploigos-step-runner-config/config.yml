@@ -123,6 +123,36 @@ step-runner-config:
 
   deploy:
   - implementer: ArgoCD
+    #####
+    #
+    # Here, I am targeting the ArgoCD deployment at three different clusters:
+    # DEV, TEST and PROD.
+    #
+    # DEV is assumed to be the local cluster where the factory is deployed.
+    #
+    # TEST and PROD are separate clusters, so I specify kube-api-url for each.
+    # They also have different tokens. Each Token grants ArgoCD permissions
+    # to deploy the applications.
+    #
+    # `deployment-config-helm-chart-environment-values-file` is unique for
+    # each of the environments. All three files are located in source control,
+    # and each one will be updated automatically with new image tag information
+    # when that environment is about to be deployed.
+    #
+    # Tokens in secrets.yaml.
+    #
+    #####
+    environment-config:
+      DEV:
+        deployment-config-helm-chart-environment-values-file: values-DEV.yaml
+      TEST:
+        kube-api-uri: https://api.preprod.az.adamgoossens.com:6443
+        kube-api-skip-tls: True
+        deployment-config-helm-chart-environment-values-file: values-TEST.yaml
+      PROD:
+        kube-api-uri: https://api.prod.adamgoossens.com:6443
+        kube-api-skip-tls: True
+        deployment-config-helm-chart-environment-values-file: values-PROD.yaml
     config:
       num-replicas: 1
       route-enabled: true
@@ -139,7 +169,7 @@ step-runner-config:
       # Once updated, it will commit the changed values.yaml file back to the repository.
       #
       #####
-      deployment-config-repo: http://gitea.devsecops.svc.cluster.local:3000/platform/reference-quarkus-mvn-cloud-resources_jenkins_workflow-standard.git
+      deployment-config-repo: https://gitea-devsecops.apps.cluster-d664.d664.sandbox567.opentlc.com/platform/reference-quarkus-mvn-cloud-resources_jenkins_workflow-standard.git
       deployment-config-helm-chart-path: charts/reference-quarkus-mvn-deploy
       deployment-config-helm-chart-values-file-image-tag-yq-path: 'image.tag'
       
@@ -150,7 +180,7 @@ step-runner-config:
       # Does not have to be local to this cluster.
       #
       #####
-      argocd-api: argocd-server.devsecops.svc.cluster.local
+      argocd-api: argocd-server-devsecops.apps.cluster-d664.d664.sandbox567.opentlc.com
       argocd-skip-tls: True
       argocd-sync-timeout-seconds: 130
 
@@ -162,37 +192,6 @@ step-runner-config:
       # Auth using git-username and git-password; see secrets.yaml
       #####
       git-email: 'adam.goossens@gmail.com'
-
-      #####
-      #
-      # Here, I am targeting the ArgoCD deployment at three different clusters:
-      # DEV, TEST and PROD.
-      #
-      # DEV is assumed to be the local cluster where the factory is deployed.
-      #
-      # TEST and PROD are separate clusters, so I specify kube-api-url for each.
-      # They also have different tokens. Each Token grants ArgoCD permissions
-      # to deploy the applications.
-      #
-      # `deployment-config-helm-chart-environment-values-file` is unique for
-      # each of the environments. All three files are located in source control,
-      # and each one will be updated automatically with new image tag information
-      # when that environment is about to be deployed.
-      #
-      # Tokens in secrets.yaml.
-      #
-      #####
-      environment-config:
-        DEV:
-          deployment-config-helm-chart-environment-values-file: values-DEV.yaml
-        TEST:
-          kube-api-url: https://api.preprod.az.adamgoossens.com:6443
-          kube-api-skip-tls: True
-          deployment-config-helm-chart-environment-values-file: values-TEST.yaml
-        PROD:
-          kube-api-url: https://api.prod.adamgoossens.com:6443
-          kube-api-skip-tls: True
-          deployment-config-helm-chart-environment-values-file: values-PROD.yaml
 
   validate-environment-configuration:
   - implementer: ConfiglintFromArgocd
