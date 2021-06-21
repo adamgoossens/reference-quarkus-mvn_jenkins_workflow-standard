@@ -22,7 +22,7 @@ ploigosWorkflowEverything(
     workflowWorkerImageContainerOperations: 'quay.io/ploigos/ploigos-tool-containers:nightly',
     workflowWorkerImageContainerImageStaticComplianceScan: 'quay.io/ploigos/ploigos-tool-openscap:nightly',
     workflowWorkerImageContainerImageStaticVulnerabilityScan: 'quay.io/ploigos/ploigos-tool-openscap:nightly',
-    workflowWorkerImageDeploy: 'quay.io/ploigos/ploigos-tool-argocd:nightly',
+    workflowWorkerImageDeploy: 'quay.io/agoossen/ploigos-tool-argocd:nightly',
     workflowWorkerImageValidateEnvironmentConfiguration: 'quay.io/ploigos/ploigos-tool-config-lint:nightly',
     workflowWorkerImageUAT: 'quay.io/ploigos/ploigos-tool-maven:nightly',
     
