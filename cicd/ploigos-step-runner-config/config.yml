@@ -105,7 +105,7 @@ step-runner-config:
   sign-container-image:
   - implementer: PodmanSign
     config:
-      container-image-signature-server-url: https://nexus-devsecops.apps.cluster-d664.d664.sandbox567.opentlc.com/repository/container-image-signatures
+      container-image-signature-destination-url: https://nexus-devsecops.apps.cluster-d664.d664.sandbox567.opentlc.com/repository/container-image-signatures
 
   container-image-static-compliance-scan:
   - name: OpenSCAP - Compliance - Example Compliance Profile for UBI8 Container Images [Based on xccdf_org.ssgproject.content_profile_standard]
