@@ -10,6 +10,8 @@ ploigosWorkflowEverything(
     stepRunnerConfigDir: 'cicd/ploigos-step-runner-config/',
     pgpKeysSecretName: 'tssc-gpg-key',
 
+    workflowWorkersImagePullPolicy: 'Always'
+
     workflowServiceAccountName: 'jenkins',
 
     workflowWorkerImageDefault: 'quay.io/ploigos/ploigos-ci-agent-jenkins:nightly',
@@ -23,6 +25,6 @@ ploigosWorkflowEverything(
     workflowWorkerImageDeploy: 'quay.io/ploigos/ploigos-tool-argocd:nightly',
     workflowWorkerImageValidateEnvironmentConfiguration: 'quay.io/ploigos/ploigos-tool-config-lint:nightly',
     workflowWorkerImageUAT: 'quay.io/ploigos/ploigos-tool-maven:nightly',
-
-    separatePlatformConfig: true
+    
+    separatePlatformConfig: false
 )
