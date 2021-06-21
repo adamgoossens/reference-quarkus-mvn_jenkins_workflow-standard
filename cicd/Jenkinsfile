@@ -10,7 +10,7 @@ ploigosWorkflowEverything(
     stepRunnerConfigDir: 'cicd/ploigos-step-runner-config/',
     pgpKeysSecretName: 'tssc-gpg-key',
 
-    workflowWorkersImagePullPolicy: 'Always'
+    workflowWorkersImagePullPolicy: 'Always',
 
     workflowServiceAccountName: 'jenkins',
 
